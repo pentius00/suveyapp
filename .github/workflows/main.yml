@@ -1,0 +1,20 @@
+name: Deploy to Streamlit Sharing
+
+on:
+  push:
+    branches:
+      - main  # Change to the appropriate branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Change to the appropriate command for your app
+
+    - name: Run Streamlit app
+      run: streamlit run Survey.py  # Change to the appropriate command for your app
