@@ -26,7 +26,7 @@ Your responses will be stored in the SQLite database.
 A success message will be displayed upon successful submission of responses.
 Survey Questions
 The survey form contains the following questions:
-![This is a alt text.](/image/survey_demo_pic.JPG "This is a sample image.")
+![This is a alt text.](/images/survey_demo_pic.JPG "This is a sample image.")
 
 Have you ever used our product?
 * Would you recommend our product to others?
@@ -44,5 +44,5 @@ Have you ever used our product?
 
 ### Analysis
 Upon submission of responses, the data stored in the SQLite database can be further analyzed using various data analysis tools and techniques, such as data visualization, sentiment analysis, word cloud generation, etc. The responses can provide valuable insights and feedback for improving our product and addressing any issues or concerns raised by users.
-![This is a alt text.](/image/results_demo.JPG "This is a sample image.")
+![This is a alt text.](.../surveyapp/images/results_demo.JPG "This is a sample image.")
 # We appreciate your participation in this survey and thank you for your valuable feedback!
