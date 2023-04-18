@@ -2,10 +2,9 @@ import sqlite3
 import streamlit as st
 import re
 import pandas as pd
-import plotly.express as px
 from textblob import TextBlob
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt   
+
+
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="Survey Form", layout="wide", initial_sidebar_state="auto")
@@ -74,16 +73,22 @@ if submit:
     seventh_question = ', '.join(seventh_question)
     eighth_question = ', '.join(eighth_question)
     ninth_question = ', '.join(ninth_question)
-    tenth_question =', '.join(tenth_question)
-    eleventh_question =', '.join(eleventh_question)
-    twelfth_question =', '.join(twelfth_question)
-    
-     #Insert responses into the database
-    c.execute("INSERT INTO responses (first_question, second_question, third_question, fourth_question, fifth_question, sixth_question, seventh_question, eighth_question, ninth_question, tenth_question, eleventh_question, twelfth_question) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-          (first_question, second_question, third_question, fourth_question, fifth_question, sixth_question, seventh_question, eighth_question, ninth_question, tenth_question, eleventh_question, twelfth_question))
-    conn.commit()
-    st.success("Responses submitted successfully!")
-    st.balloons()
+    tenth_question_sentiment = TextBlob(tenth_question).sentiment.polarity
+    eleventh_question_sentiment = TextBlob(eleventh_question).sentiment.polarity
+    twelfth_question_sentiment = TextBlob(twelfth_question).sentiment.polarity
+
+    if not all([first_question, second_question, third_question, fourth_question, fifth_question, sixth_question,
+               seventh_question, eighth_question, ninth_question, tenth_question, eleventh_question, twelfth_question]):
+        st.warning("Please answer all the questions.")
+    else:
+        # Insert responses into the database
+        c.execute(
+            "INSERT INTO responses (first_question, second_question, third_question, fourth_question, fifth_question, sixth_question, seventh_question, eighth_question, ninth_question, tenth_question, eleventh_question, twelfth_question) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (first_question, second_question, third_question, fourth_question, fifth_question, sixth_question,
+             seventh_question, eighth_question, ninth_question, tenth_question, eleventh_question, twelfth_question))
+        conn.commit()
+        st.success("Responses submitted successfully!")
+        st.balloons()
 
 
 
